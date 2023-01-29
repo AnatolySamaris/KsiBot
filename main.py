@@ -17,6 +17,8 @@ def check_link(message: dict) -> bool:
     if len(attachments_list) != 0 and attachments_list[0]['type'] == 'link':
         return True
     else:
+        if 't.me' in message:
+            return True
         for word in message['text'].split():
             if sum(list(map(lambda x: x in word, ['http', ':', '/', '.']))) == 4:
                 return True
